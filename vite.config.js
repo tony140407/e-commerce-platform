@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,13 @@ export default defineConfig({
     "process.env": {
       VUE_APP_baseUrl: "https://vue3-course-api.hexschool.io",
       VUE_APP_apiPath: "blueapi001",
+    },
+  },
+  // 設定模組路徑別名
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "~": path.resolve(__dirname, "./node_modules"),
     },
   },
 });
