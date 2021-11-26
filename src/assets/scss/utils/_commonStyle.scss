@@ -1,3 +1,35 @@
 %border-radius {
   border-radius: 20px;
 }
+%shadow {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+@mixin border-hover-style($translateY) {
+  &:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transform: translateY($translateY);
+    transition: width 0.5s ease, background-color 0.5s ease;
+  }
+  &:hover:after {
+    width: 100%;
+    background: $secondary;
+  }
+}
+@mixin border-style($translateY) {
+  &:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 100%;
+    background: $secondary;
+    transform: translateY($translateY);
+    transition: width 0.5s ease, background-color 0.5s ease;
+  }
+}

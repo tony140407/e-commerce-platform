@@ -1,0 +1,93 @@
+.Shop {
+  $card_detail_dart_height: 45%;
+  .card {
+    @extend %shadow;
+    background-color: #ddd;
+    padding: 20px;
+    background: linear-gradient(
+      180deg,
+      #000 $card_detail_dart_height,
+      transparent $card_detail_dart_height
+    );
+    &_product_img_wrapper {
+      overflow: hidden;
+      box-shadow: 3px 3px $secondary;
+    }
+    &_product_img {
+      height: 240px;
+      background-size: cover;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+
+      &:hover {
+        transform: scale(1.2, 1.2);
+      }
+    }
+    &:hover > &_product_img {
+      transform: scale(1.2, 1.2);
+    }
+
+    &_detail {
+      &_dark {
+        color: #fff;
+        height: $card_detail_dart_height;
+        .card_detail_name {
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+        .card_detail_price {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+      &_size {
+        &_item {
+          @include border-hover-style(-3px);
+          margin-bottom: 10px;
+          text-align: center;
+          cursor: pointer;
+          &--active {
+            @include border-style(-3px);
+          }
+        }
+        // &_item--active {
+        //   @include border-style(-3px);
+        // }
+      }
+    }
+    &_addCartBtn {
+      font-weight: 700;
+      width: 100%;
+      padding: 5px 0;
+      text-align: center;
+      background-color: $secondary;
+      color: #fff;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+      &:after {
+        color: $secondary;
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 4px;
+        right: -10px;
+        transition: 0.5s;
+      }
+      &:hover {
+        padding-right: 35px;
+        padding-left: 15px;
+        border: 2px solid $secondary;
+        background-color: #fff;
+        color: $secondary;
+      }
+      &:hover:after {
+        opacity: 1;
+        right: 20px;
+      }
+    }
+  }
+}
