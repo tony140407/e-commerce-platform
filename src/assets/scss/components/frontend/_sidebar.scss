@@ -1,0 +1,50 @@
+.sidebar {
+  @extend %border-radius;
+  background-color: $primary;
+  height: 100vh;
+  padding: 50px 20px;
+
+  @include RWD_md {
+    background-color: #fff;
+    border-bottom: 2px solid $secondary;
+    border-radius: 0px;
+    height: auto;
+    padding: 0;
+  }
+  &_btn_wrapper {
+    @include RWD_md {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+  }
+  &_btn {
+    @extend %border-radius;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid transparent;
+    font-weight: 700;
+    @include RWD_md {
+      padding: 5px 10px;
+      margin: 0px 3px;
+      color: $secondary;
+      border-bottom: 0;
+    }
+
+    &:hover {
+      border: 2px solid $secondary;
+      @include RWD_md {
+        border: 2px solid $secondary;
+        border-bottom: transparent;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+  }
+  &_btn--active {
+    color: #fff;
+    background-color: $secondary;
+    @include RWD_md {
+      border-radius: 10px 10px 0 0;
+    }
+  }
+}
