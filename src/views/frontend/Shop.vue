@@ -1,13 +1,13 @@
 <template>
   <section class="Shop container mx-auto mt-5">
     <div class="row gx-5">
-      <Sidebar class="col-12 col-md-3" />
-      <div class="col-12 col-md-9">
+      <Sidebar class="col-12 col-lg-3" />
+      <div class="col-12 col-lg-9">
         <div class="row gy-3">
-          <div class="col-12 col-md-6"><Card /></div>
-          <div class="col-12 col-md-6"><Card /></div>
-          <div class="col-12 col-md-6"><Card /></div>
-          <div class="col-12 col-md-6"><Card /></div>
+          <div class="col-12 col-lg-6"><Card /></div>
+          <div class="col-12 col-lg-6"><Card /></div>
+          <div class="col-12 col-lg-6"><Card /></div>
+          <div class="col-12 col-lg-6"><Card /></div>
         </div>
       </div>
     </div>

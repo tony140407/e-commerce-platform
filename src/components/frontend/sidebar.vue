@@ -1,9 +1,9 @@
 <template>
-  <section class="sidebar d-flex d-md-block justify-content-between">
+  <section class="sidebar d-flex d-lg-block justify-content-between">
     <ul class="sidebar_btn_wrapper">
       <li>
         <button
-          class="sidebar_btn h4 mb-md-3"
+          class="sidebar_btn h4 mb-lg-3"
           :class="{ 'sidebar_btn--active': whichSidebarBtnActive == 'all' }"
           @click="changeSidebarBtnActive('all')"
         >
@@ -12,7 +12,7 @@
       </li>
       <li>
         <button
-          class="sidebar_btn h4 mb-md-3"
+          class="sidebar_btn h4 mb-lg-3"
           :class="{ 'sidebar_btn--active': whichSidebarBtnActive == 'clothes' }"
           @click="changeSidebarBtnActive('clothes')"
         >
@@ -21,7 +21,7 @@
       </li>
       <li>
         <button
-          class="sidebar_btn h4 mb-md-3"
+          class="sidebar_btn h4 mb-lg-3"
           :class="{ 'sidebar_btn--active': whichSidebarBtnActive == 'pants' }"
           @click="changeSidebarBtnActive('pants')"
         >
@@ -30,7 +30,7 @@
       </li>
       <li>
         <button
-          class="sidebar_btn h4 mb-md-3"
+          class="sidebar_btn h4 mb-lg-3"
           :class="{ 'sidebar_btn--active': whichSidebarBtnActive == 'shoes' }"
           @click="changeSidebarBtnActive('shoes')"
         >
@@ -39,7 +39,7 @@
       </li>
       <li>
         <button
-          class="sidebar_btn h4 mb-md-3"
+          class="sidebar_btn h4 mb-lg-3"
           :class="{ 'sidebar_btn--active': whichSidebarBtnActive == 'outerwear' }"
           @click="changeSidebarBtnActive('outerwear')"
         >
