@@ -1,9 +1,15 @@
 .Shop {
   $card_detail_dart_height: 45%;
+  $card_padding: 20px;
   .card {
+    @extend %border-radius;
     @extend %shadow;
+    @include RWD_lg {
+      margin-top: 30px;
+    }
+    position: relative;
     background-color: #ddd;
-    padding: 20px;
+    padding: $card_padding;
     background: linear-gradient(
       180deg,
       #000 $card_detail_dart_height,
@@ -88,6 +94,19 @@
         opacity: 1;
         right: 20px;
       }
+    }
+    &_likeIcon {
+      position: absolute;
+      padding: $card_padding;
+      right: 0;
+      top: 0;
+      color: #fff;
+      &:hover {
+        color: $secondary;
+      }
+    }
+    &_likeIcon--active {
+      color: $secondary;
     }
   }
 }

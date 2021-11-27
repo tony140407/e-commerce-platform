@@ -4,7 +4,7 @@
   height: 100vh;
   padding: 50px 20px;
 
-  @include RWD_md {
+  @include RWD_lg {
     background-color: #fff;
     border-bottom: 2px solid $secondary;
     border-radius: 0px;
@@ -12,7 +12,7 @@
     padding: 0;
   }
   &_btn_wrapper {
-    @include RWD_md {
+    @include RWD_lg {
       display: flex;
       justify-content: space-around;
       width: 100%;
@@ -24,7 +24,7 @@
     width: 100%;
     border: 2px solid transparent;
     font-weight: 700;
-    @include RWD_md {
+    @include RWD_lg {
       padding: 5px 10px;
       margin: 0px 3px;
       color: $secondary;
@@ -33,7 +33,7 @@
 
     &:hover {
       border: 2px solid $secondary;
-      @include RWD_md {
+      @include RWD_lg {
         border: 2px solid $secondary;
         border-bottom: transparent;
         border-radius: 10px 10px 0 0;
@@ -43,7 +43,7 @@
   &_btn--active {
     color: #fff;
     background-color: $secondary;
-    @include RWD_md {
+    @include RWD_lg {
       border-radius: 10px 10px 0 0;
     }
   }

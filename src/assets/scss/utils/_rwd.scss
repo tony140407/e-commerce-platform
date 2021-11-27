@@ -1,3 +1,8 @@
+@mixin RWD_lg() {
+  @media (max-width: 991.98px) {
+    @content;
+  }
+}
 @mixin RWD_md() {
   @media (max-width: 767.98px) {
     @content;
