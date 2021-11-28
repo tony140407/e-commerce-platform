@@ -1,0 +1,36 @@
+.login {
+  &_title {
+    color: $secondary;
+    border-bottom: 2px solid $secondary;
+    font-weight: 700;
+  }
+  &_note {
+    color: $light;
+  }
+  &_btn > button {
+    width: 100%;
+    font-weight: 700;
+    background-color: $secondary;
+    color: #fff;
+    padding: 12px 16px;
+  }
+  &_otherMethod {
+    display: flex;
+    justify-content: center;
+    li + li {
+      margin-left: 30px;
+    }
+    li:hover svg {
+      transform: scale(1.2, 1.2);
+      color: $secondary;
+    }
+  }
+  &_register {
+    text-align: center;
+    color: $light;
+    span {
+      color: $secondary;
+      cursor: pointer;
+    }
+  }
+}

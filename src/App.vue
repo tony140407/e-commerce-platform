@@ -5,7 +5,7 @@
 
 <script setup>
 import Navbar from "./components/layout/navbar.vue";
-import { inject } from "vue";
+import { inject, onMounted, ref } from "vue";
 
 const axios = inject("axios");
 
@@ -14,4 +14,5 @@ axios.get(api).then((response) => {
   console.log("success");
   console.log(response.data);
 });
+// --------------------------
 </script>

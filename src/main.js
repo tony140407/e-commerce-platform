@@ -12,9 +12,23 @@ import {
   faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faShopify } from "@fortawesome/free-brands-svg-icons";
+import {
+  faShopify,
+  faFacebookSquare,
+  faLinkedin,
+  faGithubSquare,
+} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-library.add(faShoppingCart, faSignInAlt, faSolidHeart, faHeart, faShopify);
+library.add(
+  faShoppingCart,
+  faSignInAlt,
+  faSolidHeart,
+  faHeart,
+  faShopify,
+  faFacebookSquare,
+  faLinkedin,
+  faGithubSquare
+);
 
 import "@/assets/scss/all.scss";
 

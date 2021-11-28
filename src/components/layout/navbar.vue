@@ -24,46 +24,29 @@
             >
           </li>
           <li>
-            <router-link class="navbar_link h4" :to="'login'"
-              ><font-awesome-icon :icon="['fas', 'sign-in-alt']" /><span class="ms-1"
-                >Login</span
-              ></router-link
+            <a class="navbar_link h4" @click="showLoginModal"
+              ><font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+              <span class="ms-1">Login</span></a
             >
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <Login @instance="copyInstance" />
 </template>
 
 <script setup>
 import { ref } from "vue";
+import Login from "../admin/login.vue";
 const isCollapseActive = ref(false);
-</script>
 
-<style lang="scss" scoped>
-.navbar {
-  background-color: #daf5f0;
-  &_link {
-    display: inline-block;
-    padding: 3px 10px;
-    margin: 0;
-    &:after {
-      content: "";
-      display: block;
-      margin: auto;
-      height: 3px;
-      width: 0px;
-      background: transparent;
-      transition: width 0.5s ease, background-color 0.5s ease;
-    }
-    &:hover:after {
-      width: 100%;
-      background: #03c4b9;
-    }
-  }
+const loginInstance = ref(null);
+
+function copyInstance(instance) {
+  loginInstance.value = instance;
 }
-.collapse--unActive {
-  display: none;
+function showLoginModal() {
+  loginInstance.value.show();
 }
-</style>
+</script>
