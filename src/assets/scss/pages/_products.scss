@@ -1,0 +1,28 @@
+.products {
+  &_title {
+    border-bottom: 2px solid $light;
+    text-align: center;
+    font-weight: 700;
+  }
+  &_list {
+    text-align: center;
+    padding: 10px 0;
+    &:hover {
+      background-color: #f3f3f3;
+    }
+
+    &_modifyBTN {
+      @include outlineBTN-hover($secondary);
+    }
+    &_deleteBTN {
+      @include outlineBTN-hover($danger);
+    }
+
+    &_isPaid--success {
+      color: $secondary;
+    }
+    &_isPaid--fail {
+      color: $danger;
+    }
+  }
+}

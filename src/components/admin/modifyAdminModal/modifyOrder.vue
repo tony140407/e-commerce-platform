@@ -1,9 +1,9 @@
 <template>
-  <section class="login modal fade" ref="loginRef">
+  <section class="modal fade" ref="modifyOrderRef">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <h3 class="login_title h3">登入</h3>
+          <h3 class="login_title h3">確定要刪除 {{ id }}</h3>
           <p class="login_note mb-3">立即登入，享用更多服務!</p>
           <section class="mb-3">
             <div class="form-floating mb-3">
@@ -46,50 +46,38 @@
 
 <script setup>
 import { defineProps, defineEmits, toRefs, ref, onMounted, inject } from "vue";
-import { useRouter } from "vue-router";
 import { Modal } from "bootstrap";
+// props & emit
+const props = defineProps({
+  mode: String,
+  id: String,
+});
 const emit = defineEmits(["instance"]);
 
 // bootstrap modal 建立並emit到父原件以供顯現( show() )
-const loginRef = ref(null);
-const loginModal = ref(null);
+const modifyOrderRef = ref(null);
+const modifyOrderModal = ref(null);
 onMounted(() => {
-  loginModal.value = new Modal(loginRef.value);
-  emit("instance", loginModal.value);
+  modifyOrderModal.value = new Modal(modifyOrderRef.value);
+  emit("instance", modifyOrderModal.value);
 });
 const hideModal = () => {
-  loginModal.value.hide();
+  modifyOrderModal.value.hide();
 };
 // --------------------------------------------------
 
-// login 按鈕登入及路徑導向
+// 刪除api
 const axios = inject("axios");
-const router = useRouter();
 
-const loginInformation = ref({ username: null, password: null });
-const login = () => {
+const modifyOrderFn = () => {
   hideModal();
-  const { username, password } = loginInformation.value;
-  const user = {
-    username,
-    password,
-  };
-  const loginAPI = `${process.env.VUE_APP_baseUrl}/admin/signin`;
+
+  const api = `${process.env.VUE_APP_baseUrl}/admin/${props.mode}/${props.id}`;
 
   axios
-    .post(loginAPI, user)
+    .delete(api)
     .then((res) => {
-      if (res.data.success) {
-        const { token, expired } = res.data;
-        document.cookie = `hexToken=${token}; expires=${new Date(expired)}; path=/`;
-        axios.defaults.headers.common.Authorization = token;
-
-        router.push({
-          path: "/admin",
-        });
-      } else {
-        alert(res.data.message);
-      }
+      console.log(res);
     })
     .catch((error) => {
       console.log(error);

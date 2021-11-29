@@ -6,9 +6,11 @@
 
 //layout
 @import './layout/navbar';
+@import './layout/sidebar';
 //frontend
-@import './components/frontend/sidebar';
 @import './components/frontend/card';
 
 // admin
 @import './components/admin/login';
+
+@import './pages/products';

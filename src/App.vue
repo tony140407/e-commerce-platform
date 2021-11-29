@@ -15,4 +15,14 @@ axios.get(api).then((response) => {
   console.log(response.data);
 });
 // --------------------------
+// import Swal from "sweetalert2";
+// new Swal("Hello Vue world!!!");
+// --------------------------------------------------------
+const VueSweetalert2 = inject("VueSweetalert2");
+VueSweetalert2({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+  footer: '<a href="">Why do I have this issue?</a>',
+});
 </script>

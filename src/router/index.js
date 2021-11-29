@@ -61,8 +61,8 @@ const routes = [
         component: Orders,
       },
       {
-        path: "coupon",
-        name: "Coupon",
+        path: "coupons",
+        name: "Coupons",
         component: Coupon,
       },
     ],
@@ -91,7 +91,7 @@ router.beforeEach((to, from, next) => {
         next();
       } else {
         next({
-          path: "/login",
+          path: "/",
         });
       }
     });

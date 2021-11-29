@@ -30,13 +30,18 @@ library.add(
   faGithubSquare
 );
 
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+
 import "@/assets/scss/all.scss";
 
 const app = createApp(App);
 
 app.use(router);
 app.use(VueAxios, axios);
+app.use(VueSweetalert2);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.provide("axios", app.config.globalProperties.axios);
+app.provide("VueSweetalert2", app.config.globalProperties.$swal);
 
 app.mount("#app");

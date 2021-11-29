@@ -33,3 +33,13 @@
     transition: width 0.5s ease, background-color 0.5s ease;
   }
 }
+
+@mixin outlineBTN-hover($color) {
+  border: 1px solid $color;
+  color: $color;
+  &:hover {
+    border: 1px solid transparent;
+    color: #fff;
+    background-color: $color;
+  }
+}
