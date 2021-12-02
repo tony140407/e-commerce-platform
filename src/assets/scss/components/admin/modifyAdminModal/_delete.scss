@@ -1,0 +1,16 @@
+.delete {
+  &_title {
+    color: $danger;
+    border-bottom: 2px solid $danger;
+  }
+  &_btn {
+    padding: 10px 0;
+    @extend %border-radius;
+    &_cancel {
+      @include outlineBTN-hover($light);
+    }
+    &_confirm {
+      @include outlineBTN-hover($danger);
+    }
+  }
+}

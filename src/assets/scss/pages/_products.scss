@@ -1,4 +1,5 @@
 .products {
+  position: relative;
   &_title {
     border-bottom: 2px solid $light;
     text-align: center;
@@ -23,6 +24,16 @@
     }
     &_isPaid--fail {
       color: $danger;
+    }
+  }
+  &_addNewProduct {
+    display: flex;
+    flex-direction: row-reverse;
+    &_btn {
+      @include outlineBTN-hover($secondary);
+      @extend %border-radius;
+      padding: 10px 20px;
+      font-weight: 700;
     }
   }
 }

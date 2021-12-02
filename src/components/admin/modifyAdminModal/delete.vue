@@ -1,12 +1,15 @@
 <template>
-  <section class="modal fade" ref="modifyOrderRef">
+  <section class="delete modal fade" ref="deleteRef">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content p-2">
         <div class="modal-body">
-          <h3 class="login_title h3">確定要刪除 {{ id }}</h3>
-          <div class="row">
-            <button class="col-4" @click="hideModal()">取消</button>
-            <button class="col-8" @click="deleteFn()">確定刪除!</button>
+          <h3 class="delete_title h4 mb-5">確定要刪除 {{ id }} ?</h3>
+          <p class="mb-5 h3">一旦刪除資料將無法尋回!</p>
+          <div class="row gx-2">
+            <button class="col-4 delete_btn delete_btn_cancel" @click="hideModal">取消</button>
+            <button class="col-7 offset-1 delete_btn delete_btn_confirm" @click="deleteFn">
+              確定刪除!
+            </button>
           </div>
         </div>
       </div>
@@ -27,14 +30,14 @@ const { mode, id, getData } = toRefs(props);
 const emit = defineEmits(["instance"]);
 
 // bootstrap modal 建立並emit到父原件以供顯現( show() )
-const modifyOrderRef = ref(null);
-const modifyOrderModal = ref(null);
+const deleteRef = ref(null);
+const deleteModal = ref(null);
 onMounted(() => {
-  modifyOrderModal.value = new Modal(modifyOrderRef.value);
-  emit("instance", modifyOrderModal.value);
+  deleteModal.value = new Modal(deleteRef.value);
+  emit("instance", deleteModal.value);
 });
 const hideModal = () => {
-  modifyOrderModal.value.hide();
+  deleteModal.value.hide();
 };
 // --------------------------------------------------
 
@@ -43,7 +46,7 @@ const axios = inject("axios");
 
 const deleteFn = () => {
   hideModal();
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/${mode}/${id}`;
+  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/${mode.value}/${id.value}`;
   axios
     .delete(api)
     .then((res) => {

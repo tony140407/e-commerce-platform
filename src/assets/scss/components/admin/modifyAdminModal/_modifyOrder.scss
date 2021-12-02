@@ -1,0 +1,42 @@
+.modifyOrder {
+  &_title {
+    color: $secondary;
+    border-bottom: 2px solid $secondary;
+  }
+  &_productList_title {
+    text-align: center;
+    border-bottom: 1px solid $light;
+  }
+  &_productList_body {
+    text-align: center;
+    border-bottom: 1px solid $light;
+    &_listItem {
+      padding: 10px 0;
+      &:hover {
+        background-color: #f3f3f3;
+      }
+    }
+    &_input {
+      text-align: center;
+      width: 100%;
+    }
+    &_deleteBTN {
+      @include outlineBTN-hover($danger);
+    }
+    &_totalCost {
+      font-weight: 600;
+    }
+  }
+  &_productList_footer {
+    &_btn_cancel {
+      @extend %border-radius;
+      @include outlineBTN-hover($light);
+      padding: 10px 0;
+    }
+    &_btn_confirm {
+      @extend %border-radius;
+      @include outlineBTN-hover($secondary);
+      padding: 10px 0;
+    }
+  }
+}

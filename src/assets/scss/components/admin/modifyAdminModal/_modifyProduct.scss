@@ -1,0 +1,22 @@
+.modifyProduct {
+  &_title {
+    color: $secondary;
+    border-bottom: 2px solid $secondary;
+  }
+  &_addImgBtn {
+    @include outlineBTN-hover($secondary);
+  }
+  &_deleteImgBtn {
+    @include outlineBTN-hover($danger);
+  }
+  &_btn {
+    padding: 10px 0;
+    @extend %border-radius;
+    &_cancel {
+      @include outlineBTN-hover($light);
+    }
+    &_confirm {
+      @include outlineBTN-hover($secondary);
+    }
+  }
+}

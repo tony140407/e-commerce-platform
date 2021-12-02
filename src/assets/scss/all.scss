@@ -12,5 +12,10 @@
 
 // admin
 @import './components/admin/login';
+@import './components/admin/pagination';
 
 @import './pages/products';
+
+@import './components/admin/modifyAdminModal/modifyProduct';
+@import './components/admin/modifyAdminModal/modifyOrder';
+@import './components/admin/modifyAdminModal/delete';
