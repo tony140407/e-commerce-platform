@@ -38,6 +38,9 @@
       &_dark {
         color: #fff;
         height: $card_detail_dart_height;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .card_detail_name {
           font-size: 1.5rem;
           font-weight: 700;

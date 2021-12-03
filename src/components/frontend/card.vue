@@ -3,15 +3,18 @@
     <div class="row">
       <div class="col-6 col-md-4 offset-md-1 col-lg-6 offset-lg-0">
         <div class="card_product_img_wrapper">
-          <div class="card_product_img" :style="{ backgroundImage: `url('  ${testImg}  ')` }"></div>
+          <div
+            class="card_product_img"
+            :style="{ backgroundImage: `url('  ${productDetail.imageUrl}  ')` }"
+          ></div>
         </div>
       </div>
       <div
         class="card_detail col-6 offset-md-1 offset-lg-0 d-flex flex-column justify-content-between"
       >
         <div class="card_detail_dark">
-          <h4 class="card_detail_name">斯雅的帽子</h4>
-          <p class="card_detail_price">$1500</p>
+          <h4 class="card_detail_name">{{ productDetail.title }}</h4>
+          <p class="card_detail_price">NT${{ productDetail.price }}</p>
         </div>
         <div class="card_detail_light">
           <ul class="card_detail_size row">
@@ -58,7 +61,7 @@
               XXL
             </li>
           </ul>
-          <button class="card_addCartBtn">加入購物車</button>
+          <button class="card_addCartBtn" @click="addCart()">加入購物車</button>
         </div>
       </div>
     </div>
@@ -71,10 +74,36 @@
   </section>
 </template>
 <script setup>
-import { ref } from "vue";
-const testImg =
-  "https://images.unsplash.com/photo-1607352208720-3f8883a35f9e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
+import { defineProps, toRefs, inject, ref, computed } from "vue";
+const props = defineProps({
+  productDetail: Object,
+});
+const { productDetail } = toRefs(props);
 
 const card_detail_size = ref("XS");
+const currentProductID = computed(() => productDetail.value.size[card_detail_size.value]);
+
 const card_likeIcon_isActive = ref(false);
+// 變更 size
+function changeSize() {}
+
+// 加入購物車
+const axios = inject("axios");
+const VueSweetalert2 = inject("VueSweetalert2");
+function addCart() {
+  const totalUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart`;
+  const postData = { data: { product_id: currentProductID.value, qty: 1 } };
+
+  axios.post(totalUrl, postData).then((res) => {
+    if (res.data.success == true) {
+      VueSweetalert2({
+        icon: "success",
+        title: "已加入購物車!",
+        timer: 1000,
+        showCloseButton: false,
+        showCancelButton: false,
+      });
+    }
+  });
+}
 </script>

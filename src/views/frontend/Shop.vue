@@ -1,13 +1,12 @@
 <template>
-  <section class="Shop container mx-auto mt-5">
+  <section class="Shop container mx-auto my-5">
     <div class="row gx-5">
-      <Sidebar class="col-12 col-lg-3" />
+      <Sidebar class="col-12 col-lg-3" @sidebarSelect="changeSelectCategories" />
       <div class="col-12 col-lg-9">
         <div class="row gy-3">
-          <div class="col-12 col-lg-6"><Card /></div>
-          <div class="col-12 col-lg-6"><Card /></div>
-          <div class="col-12 col-lg-6"><Card /></div>
-          <div class="col-12 col-lg-6"><Card /></div>
+          <div class="col-12 col-lg-6" v-for="eachProduct in filterProducts" :key="eachProduct">
+            <Card :productDetail="eachProduct" />
+          </div>
         </div>
       </div>
     </div>
@@ -17,11 +16,100 @@
 <script setup>
 import Sidebar from "@/components/frontend/sidebar.vue";
 import Card from "@/components/frontend/card.vue";
-import { ref } from "vue";
-const testImg =
-  "https://images.unsplash.com/photo-1607352208720-3f8883a35f9e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
-
-const card_detail_size = ref("XS");
+import { ref, inject, watch } from "vue";
+//
+const productsData = ref([]);
+const filterProducts = ref([]);
+const selectCategories = ref("全部");
+// api 取得資料
+const axios = inject("axios");
+function getData() {
+  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/products/all`;
+  axios
+    .get(api)
+    .then((res) => {
+      productsData.value = res.data.products;
+      reorganization();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+function reorganization() {
+  changeCardCategory();
+  cleanFilterProducts();
+}
+watch(
+  () => selectCategories.value,
+  () => {
+    reorganization();
+  }
+);
+function changeCardCategory() {
+  if (selectCategories.value == "全部") {
+    filterProducts.value = productsData.value;
+    return;
+  }
+  filterProducts.value = productsData.value.filter(
+    (product) => product.category === selectCategories.value
+  );
+}
+function cleanFilterProducts() {
+  // 資料庫刪不掉的資料
+  const excessDataIndex = filterProducts.value.findIndex(
+    (element) => element.title == "[賣]動物園造型衣服3"
+  );
+  filterProducts.value.splice(excessDataIndex, 1);
+  // 資料庫刪不掉的資料
+  // 過濾 size 資訊
+  const bracketReg = /\(*\)/; //所有有括號的
+  const sizeReg = {
+    XS: /\(+XS+\)/,
+    S: /\(+S+\)/,
+    M: /\(+M+\)/,
+    L: /\(+L+\)/,
+    XL: /\(+XL+\)/,
+    XXL: /\(+XXL+\)/,
+  };
+  const sizeList = ["XS", "S", "M", "L", "XL", "XXL"];
+  let newProducts = [];
+  // 先找出無size的樣本
+  filterProducts.value.filter((eachProduct) => {
+    // 沒有括號的拉出來當Card size屬性填入同名產品
+    if (!bracketReg.test(eachProduct.title)) {
+      eachProduct.size = {
+        XS: "",
+        S: "",
+        M: "",
+        L: "",
+        XL: "",
+        XXL: "",
+      };
+      newProducts.push(eachProduct);
+    }
+  });
+  // 有括號的 ID 填入 size 屬性中
+  sizeList.filter((eachSize) => {
+    filterProducts.value.filter((eachProduct) => {
+      if (sizeReg[eachSize].test(eachProduct.title)) {
+        const key = eachProduct.title.replace(sizeReg[eachSize], "");
+        newProducts.find((eachNewProduct) => {
+          if (eachNewProduct.title == key) {
+            eachNewProduct.size[eachSize] = eachNewProduct.id;
+            return true;
+          }
+        });
+      }
+    });
+  });
+  filterProducts.value = newProducts;
+}
+function changeSelectCategories(value) {
+  selectCategories.value = value;
+  console.log("changeSelectCategories");
+  console.log(selectCategories.value);
+}
+getData();
 </script>
 
 <style lang="scss" scoped></style>
