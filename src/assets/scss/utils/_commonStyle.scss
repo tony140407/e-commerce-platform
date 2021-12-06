@@ -5,6 +5,10 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
+%note {
+  font-size: 0.75rem;
+  color: $light;
+}
 @mixin border-hover-style($translateY) {
   &:after {
     content: '';
@@ -41,5 +45,16 @@
     border: 1px solid transparent;
     color: #fff;
     background-color: $color;
+  }
+}
+@mixin btn-hover($color, $hoverColor) {
+  background-color: $color;
+  border: 1px solid #fff;
+  color: #fff;
+
+  &:hover {
+    border: 1px solid #fff;
+    color: #000;
+    background-color: $hoverColor;
   }
 }

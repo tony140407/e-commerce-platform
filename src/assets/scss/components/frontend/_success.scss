@@ -1,0 +1,42 @@
+.success {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(90deg, #fff 50%, transparent 50%) center center/
+      100% 100%,
+    url('@/assets/images/successSend.jpg') right center / auto 100%;
+
+  @include RWD_lg {
+    background: url('@/assets/images/successSend.jpg') right center / auto 100%;
+  }
+  &_group {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &_text {
+      display: inline-block;
+      font-weight: 700;
+      &:after {
+        content: '';
+        display: block;
+        margin: auto;
+        height: 20px;
+        width: 100%;
+        background: rgba(218, 245, 240, 0.5);
+        transform: translateY(-20px);
+      }
+
+      @include RWD_lg {
+        color: #fff;
+      }
+    }
+
+    &_btn {
+      @include outlineBTN-hover($secondary);
+      @extend %border-radius;
+      width: 80%;
+      padding: 10px;
+    }
+  }
+}

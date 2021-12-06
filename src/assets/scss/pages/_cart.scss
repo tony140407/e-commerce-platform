@@ -1,0 +1,31 @@
+.Cart {
+  &_title {
+    border-bottom: 2px solid $secondary;
+    color: $secondary;
+    font-weight: 700;
+  }
+  &_note {
+    @extend %note;
+  }
+  .cartTools {
+    &_total {
+      text-align: end;
+    }
+    &_continueShoppingBTN {
+      @include btn-hover($secondary, $primary);
+      @extend %border-radius;
+      border: 2px solid;
+      font-weight: 700;
+      padding: 20px 0;
+      text-align: center;
+    }
+    &_nextBTN {
+      @include btn-hover($secondary, $primary);
+      @extend %border-radius;
+      border: 2px solid;
+      font-weight: 700;
+      padding: 20px 0;
+      text-align: center;
+    }
+  }
+}

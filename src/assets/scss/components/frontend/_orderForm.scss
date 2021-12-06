@@ -1,0 +1,20 @@
+.orderForm {
+  border: 2px solid $primary;
+  box-shadow: 3px 3px $secondary;
+  background-color: $primary;
+  &_personalCard {
+    background-color: #fff;
+    &_userIcon {
+      // border: 1px solid #f3f3f3;
+      padding: 8px 0px 8px 8px;
+    }
+    &_information {
+    }
+    &_saveBTN {
+      @include outlineBTN-hover($secondary);
+      @extend %border-radius;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}

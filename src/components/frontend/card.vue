@@ -14,7 +14,12 @@
       >
         <div class="card_detail_dark">
           <h4 class="card_detail_name">{{ productDetail.title }}</h4>
-          <p class="card_detail_price">NT${{ productDetail.price }}</p>
+          <div class="d-flex justify-content-between">
+            <p class="card_detail_price">NT${{ productDetail.price }}</p>
+            <a class="card_detail_seeMore" @click="clickToSeeMorePage(currentProductID)"
+              >查看更多</a
+            >
+          </div>
         </div>
         <div class="card_detail_light">
           <ul class="card_detail_size row">
@@ -105,5 +110,15 @@ function addCart() {
       });
     }
   });
+}
+
+// 跳至特定商品頁
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
+
+function clickToSeeMorePage(productID) {
+  console.log("click");
+  console.log(productID);
+  router.push(`/shop/${productID}`);
 }
 </script>

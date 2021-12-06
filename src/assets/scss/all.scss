@@ -9,6 +9,11 @@
 @import './layout/sidebar';
 //frontend
 @import './components/frontend/card';
+@import './components/frontend/selectProductItem';
+@import './components/frontend/cartTools';
+@import './components/frontend/orderForm';
+@import './components/frontend/success';
+@import './pages/cart';
 
 // admin
 @import './components/admin/login';

@@ -4,6 +4,9 @@ import Index from "../views/frontend/Index.vue";
 import HomePage from "../views/frontend/HomePage.vue";
 import Shop from "../views/frontend/Shop.vue";
 import Cart from "../views/frontend/Cart.vue";
+import SelectProductPage from "../components/frontend/cart/selectProductPage.vue";
+import OrderForm from "../components/frontend/cart/orderForm.vue";
+import Success from "../components/frontend/cart/success.vue";
 
 import SeeMoreProduct from "../views/frontend/SeeMoreProduct.vue";
 import Login from "../views/admin/Login.vue";
@@ -36,6 +39,11 @@ const routes = [
         path: "cart",
         name: "Cart",
         component: Cart,
+        children: [
+          { path: "", name: "SelectProductPage", component: SelectProductPage },
+          { path: "/order_form", name: "OrderForm", component: OrderForm },
+          { path: "/success", name: "Success", component: Success },
+        ],
       },
     ],
   },
