@@ -8,7 +8,7 @@
 
       <!-- 購物車時 -->
       <div class="row" v-show="route.path == '/cart'">
-        <router-link :to="'shop'" class="col-4 h4 cartTools_continueShoppingBTN"
+        <router-link :to="'/shop'" class="col-4 h4 cartTools_continueShoppingBTN"
           >繼續逛</router-link
         >
         <router-link :to="'cart/order_form'" class="offset-1 col-7 h4 cartTools_nextBTN"
@@ -17,7 +17,7 @@
       </div>
       <!-- 填表單時 -->
       <div class="row" v-show="route.path == '/order_form'">
-        <router-link :to="'cart'" class="col-4 h4 cartTools_continueShoppingBTN"
+        <router-link :to="'/cart'" class="col-4 h4 cartTools_continueShoppingBTN"
           >購物車</router-link
         >
         <router-link :to="'cart/success'" class="offset-1 col-7 h4 cartTools_nextBTN"

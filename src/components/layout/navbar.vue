@@ -12,12 +12,12 @@
       >
         <ul class="navbar-nav">
           <li>
-            <router-link class="navbar_link h4" :to="'shop'"
+            <router-link class="navbar_link h4" :to="'/shop'"
               ><font-awesome-icon :icon="['fas', 'shopping-cart']" /> <span class="ms-1">Shop</span>
             </router-link>
           </li>
           <li>
-            <router-link class="navbar_link h4" :to="'cart'"
+            <router-link class="navbar_link h4" :to="'/cart'"
               ><font-awesome-icon :icon="['fab', 'shopify']" /><span class="ms-1"
                 >Cart</span
               ></router-link
