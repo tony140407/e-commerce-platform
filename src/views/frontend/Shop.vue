@@ -16,9 +16,9 @@
 <script setup>
 import Sidebar from "@/components/frontend/sidebar.vue";
 import Card from "@/components/frontend/card.vue";
+import { storeData } from "@/js/storeData.js";
 import { ref, inject, watch } from "vue";
 //
-const productsData = ref([]);
 const filterProducts = ref([]);
 const selectCategories = ref("全部");
 // api 取得資料
@@ -28,7 +28,8 @@ function getData() {
   axios
     .get(api)
     .then((res) => {
-      productsData.value = res.data.products;
+      storeData.originProducts = res.data.products;
+      storeData.products = JSON.parse(JSON.stringify(res.data.products));
       reorganization();
     })
     .catch((error) => {
@@ -47,10 +48,10 @@ watch(
 );
 function changeCardCategory() {
   if (selectCategories.value == "全部") {
-    filterProducts.value = productsData.value;
+    filterProducts.value = storeData.products;
     return;
   }
-  filterProducts.value = productsData.value.filter(
+  filterProducts.value = storeData.products.filter(
     (product) => product.category === selectCategories.value
   );
 }
@@ -98,7 +99,7 @@ function cleanFilterProducts() {
         const key = eachProduct.title.replace(sizeReg[eachSize], "");
         newProducts.find((eachNewProduct) => {
           if (eachNewProduct.title == key) {
-            eachNewProduct.size[eachSize] = eachNewProduct.id;
+            eachNewProduct.size[eachSize] = eachProduct.id;
             return true;
           }
         });
@@ -109,8 +110,6 @@ function cleanFilterProducts() {
 }
 function changeSelectCategories(value) {
   selectCategories.value = value;
-  console.log("changeSelectCategories");
-  console.log(selectCategories.value);
 }
 getData();
 </script>
