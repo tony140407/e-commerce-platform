@@ -1,0 +1,15 @@
+.footer {
+  background-color: $primary;
+  padding: 60px 0;
+  background: no-repeat center/100% url('@/assets/images/footerBg.jpg');
+  &_contactUs {
+    color: #fff;
+    font-weight: 900;
+    &_title {
+      display: inline-block;
+      font-weight: 900;
+      padding-bottom: 3px;
+      border-bottom: 3px solid #fff;
+    }
+  }
+}
