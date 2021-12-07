@@ -1,6 +1,6 @@
 <template>
-  <section class="container d-flex flex-column">
-    <div class="my-3">
+  <section class="container d-flex flex-column my-3 my-lg-5">
+    <div class="my-3 my-lg-5">
       <h3 class="h3 Cart_title">訂單資料</h3>
       <p class="Cart_note">請確實輸入詳盡資料!</p>
     </div>

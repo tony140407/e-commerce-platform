@@ -1,0 +1,20 @@
+.seeMoreProduct {
+  &_title {
+    color: $secondary;
+  }
+  &_description {
+    font-size: 1.2rem;
+  }
+  &_price {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  &_inputNum {
+    text-align: center;
+  }
+  &_addCart {
+    @include outlineBTN-hover($secondary);
+    @extend %border-radius;
+    padding: 10px 0;
+  }
+}

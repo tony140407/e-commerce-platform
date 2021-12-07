@@ -1,38 +1,27 @@
 <template>
-  <section class="container">
+  <section class="seeMoreProduct container py-5">
     <div class="row">
       <div class="col-12 col-md-8">
         <img class="img-fluid" :src="testImg" alt="" />
       </div>
       <div class="col-12 col-md-4 d-lg-flex flex-column justify-content-between">
         <div>
-          <h3>CHANEL N°5</h3>
-          <p class="text-size-L">
+          <h3 class="seeMoreProduct_title h3">CHANEL N°5</h3>
+          <p class="seeMoreProduct_description">
             N°5，女性魅力的極致精髓。散發柔美澄透的乙醛花束香氣。經典傳奇香氛，蘊藏於極簡設計的獨特瓶身。
           </p>
-          <p class="text-size-L mb-3">NT$4,980</p>
-          <div class="d-flex mb-2">
-            <select class="border border-secondary col-5">
+          <p class="seeMoreProduct_price mb-3">NT$4,980</p>
+          <div class="row g-0 mb-2">
+            <select class="seeMoreProduct_inputNum col-4">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            <button
-              class="btn btn-secondary text-white col-7"
-              data-toggle="modal"
-              data-target="#addCartModal"
-            >
-              加入購物車
-            </button>
+            <button class="seeMoreProduct_addCart offset-1 col-7">加入購物車</button>
           </div>
-          <a
-            data-toggle="modal"
-            data-target="#addCollectionModal"
-            class="d-block mb-10 mb-md-20 text-decoration-none text-black"
-            href="#"
-          >
-            <img src="../img/common/heart.svg" alt="" class="mr-2" /><span>加入我的收藏</span></a
-          >
+          <!-- <a class="d-block text-black">
+            <font-awesome-icon :icon="['far', 'heart']" class='' /><span>加入我的收藏</span></a
+          > -->
         </div>
 
         <div class="mb-10 mb-md-0">
