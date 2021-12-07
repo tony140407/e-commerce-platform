@@ -59,7 +59,10 @@ function cleanFilterProducts() {
   const excessDataIndex = filterProducts.value.findIndex(
     (element) => element.title == "[賣]動物園造型衣服3"
   );
-  filterProducts.value.splice(excessDataIndex, 1);
+  if (excessDataIndex !== -1) {
+    filterProducts.value.splice(excessDataIndex, 1);
+  }
+
   // 資料庫刪不掉的資料
   // 過濾 size 資訊
   const bracketReg = /\(*\)/; //所有有括號的
