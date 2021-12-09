@@ -7,6 +7,9 @@
             class="card_product_img"
             :style="{ backgroundImage: `url('  ${productDetail.imageUrl}  ')` }"
           ></div>
+          <button class="card_product_img_seeMore" @click="clickToSeeMorePage(currentProductID)">
+            查看更多
+          </button>
         </div>
       </div>
       <div
@@ -16,8 +19,8 @@
           <h4 class="card_detail_name">{{ productDetail.title }}</h4>
           <div class="d-flex justify-content-between">
             <p class="card_detail_price">NT${{ productDetail.price }}</p>
-            <a class="card_detail_seeMore" @click="clickToSeeMorePage(currentProductID)"
-              >查看更多</a
+            <del v-if="isOnSale" class="card_detail_origin_price"
+              >NT${{ productDetail.origin_price }}</del
             >
           </div>
         </div>
@@ -76,6 +79,9 @@
       @click="card_likeIcon_isActive = !card_likeIcon_isActive"
       ><font-awesome-icon :icon="card_likeIcon_isActive ? ['fas', 'heart'] : ['far', 'heart']"
     /></span>
+    <div class="card_onSale" v-if="isOnSale">
+      <font-awesome-icon :icon="['fas', 'tag']" /> on sale
+    </div>
   </section>
 </template>
 <script setup>
@@ -84,13 +90,11 @@ const props = defineProps({
   productDetail: Object,
 });
 const { productDetail } = toRefs(props);
-
+const isOnSale = ref(productDetail.value.price !== productDetail.value.origin_price);
 const card_detail_size = ref("XS");
 const currentProductID = computed(() => productDetail.value.size[card_detail_size.value]);
 
 const card_likeIcon_isActive = ref(false);
-// 變更 size
-function changeSize() {}
 
 // 加入購物車
 const axios = inject("axios");
@@ -111,6 +115,11 @@ function addCart() {
     }
   });
 }
+// 加入購物車
+
+// 加入追蹤 & 追蹤init
+
+// 加入追蹤 & 追蹤init
 
 // 跳至特定商品頁
 import { useRouter, useRoute } from "vue-router";
