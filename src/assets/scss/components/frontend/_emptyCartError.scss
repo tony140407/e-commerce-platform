@@ -1,0 +1,30 @@
+.emptyCartError {
+  border: 1px solid $primary;
+  box-shadow: 3px 3px $secondary;
+  padding: 50px 20px;
+  margin: 70px 0;
+  &_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &_article {
+    font-size: 1.2rem;
+    text-align: center;
+    &_title {
+      font-weight: 700;
+      padding: 10px;
+      border-bottom: 1px solid $secondary;
+      margin-bottom: 30px;
+    }
+    &_btn {
+      display: block;
+      margin: 30px auto 0 auto;
+      width: 100%;
+      padding: 15px 10px;
+      font-weight: 700;
+      @include outlineBTN-hover($secondary);
+      @extend %border-radius;
+    }
+  }
+}

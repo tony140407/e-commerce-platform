@@ -14,7 +14,7 @@
         <router-link
           :to="'cart/order_form'"
           class="offset-1 col-7 h4 cartTools_nextBTN"
-          :disabled="testCartLength"
+          :class="{ 'cartTools_nextBTN--disable': isCartEmpty }"
           >下一步</router-link
         >
       </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, inject } from "vue";
+import { ref, inject, watch } from "vue";
 import { storeData } from "@/js/storeData.js";
 import { useRouter, useRoute } from "vue-router";
 const VueSweetalert2 = inject("VueSweetalert2");
@@ -40,11 +40,18 @@ const router = useRouter();
 const route = useRoute();
 
 // 防止購物車沒有商品卻送出訂單
-const testCartLength = ref(storeData.carts.length == 0 ? false : true);
+const isCartEmpty = ref(storeData.carts.length == 0 ? true : false);
+watch(
+  () => storeData.carts.length,
+  () => {
+    isCartEmpty.value = storeData.carts.length == 0 ? true : false;
+  }
+);
 // 防止購物車沒有商品卻送出訂單
 
 // 送出訂單
 function onSubmit() {
+  // 防止使用著資料不完全
   const { name, email, tel, address } = storeData.orderData.data.user;
   if (name == "" || email == "" || tel == "" || address == "") {
     VueSweetalert2({
@@ -56,6 +63,7 @@ function onSubmit() {
     });
     return;
   }
+  // 防止使用著資料不完全
   const totalUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/order`;
   axios.post(totalUrl, storeData.orderData).then((res) => {
     router.push({
