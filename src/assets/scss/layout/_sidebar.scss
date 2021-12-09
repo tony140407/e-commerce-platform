@@ -10,6 +10,7 @@
     border-radius: 0px;
     height: auto;
     padding: 0;
+    min-height: auto;
   }
   &_btn_wrapper {
     @include RWD_lg {

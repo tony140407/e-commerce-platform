@@ -17,4 +17,14 @@
       padding: 10px;
     }
   }
+  &_selectCard {
+    @extend %border-radius;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 1px solid $secondary;
+    color: $secondary;
+    text-align: center;
+    cursor: pointer;
+  }
 }

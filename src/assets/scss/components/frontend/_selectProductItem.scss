@@ -16,6 +16,19 @@
       font-weight: 700;
       cursor: pointer;
     }
+    &_imgWrapper {
+      overflow: hidden;
+    }
+    &_img {
+      height: 240px;
+      background-size: cover;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+      @include RWD_md {
+        height: 150px;
+      }
+    }
     &_plus_minus {
       background-color: $secondary;
       color: #fff;
