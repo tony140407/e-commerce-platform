@@ -86,6 +86,7 @@
 </template>
 <script setup>
 import { defineProps, toRefs, inject, ref, computed } from "vue";
+import { getCartData } from "@/js/storeData.js";
 const props = defineProps({
   productDetail: Object,
 });
@@ -112,6 +113,7 @@ function addCart() {
         showCloseButton: false,
         showCancelButton: false,
       });
+      getCartData();
     }
   });
 }

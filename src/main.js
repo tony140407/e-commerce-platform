@@ -17,6 +17,7 @@ import {
   faMapMarkedAlt,
   faTag,
   faSearch,
+  faMedal,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -35,6 +36,7 @@ library.add(
   faUser,
   faPhoneAlt,
   faTag,
+  faMedal,
   faSearch,
   faMapMarkedAlt,
   faHeart,

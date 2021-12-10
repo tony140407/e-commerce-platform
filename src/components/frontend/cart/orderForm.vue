@@ -117,55 +117,6 @@
     </div>
   </section>
 </template>
-
-//
-<script>
-// export default {
-//   name: "Home",
-//   props: { cart: Object },
-//   data() {
-//     return {
-//       orderData: {
-//         data: {
-//           user: {
-//             name: "",
-//             email: "",
-//             tel: "",
-//             address: "",
-//           },
-//           message: "",
-//         },
-//       },
-//     };
-//   },
-
-//   methods: {
-//     isPhone(value) {
-//       const phoneNumber = /^(09)[0-9]{8}$/;
-//       return phoneNumber.test(value) ? true : "需要正確的電話號碼";
-//     },
-//     isMail(value) {
-//       const mail = /\S+@\S+\.\S+/;
-//       return mail.test(value) ? true : "需要正確的電子信箱";
-//     },
-//     onSubmit() {
-//       if (this.cart.carts.length === 0) {
-//         alert("購物車裡面沒有東西喔");
-//         return;
-//       }
-//       const totalUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/order`;
-//       this.$http.post(totalUrl, this.orderData).then((res) => {
-//         console.log(res.data);
-//         // console.log("emit重整");
-//         // this.$emit("render-view");
-//       });
-//     },
-//   },
-
-//   created() {},
-// };
-//
-</script>
 <script setup>
 import { ref, inject } from "vue";
 import { storeData } from "@/js/storeData.js";

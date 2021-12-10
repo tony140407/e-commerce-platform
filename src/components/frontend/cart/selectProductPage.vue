@@ -10,11 +10,14 @@
       />
     </ul>
     <EmptyCartError v-else />
+
+    <Recommend />
   </div>
 </template>
 
 <script setup>
 import SelectProductItem from "@/components/frontend/cart/selectProductItem.vue";
 import EmptyCartError from "@/components/frontend/cart/EmptyCartError.vue";
+import Recommend from "@/components/frontend/cart/recommend.vue";
 import { storeData } from "@/js/storeData.js";
 </script>

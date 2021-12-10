@@ -1,0 +1,12 @@
+.recommend {
+  &_title {
+    color: $secondary;
+    font-weight: 700;
+    border-bottom: 1px solid $secondary;
+    display: inline-block;
+  }
+  &_swiper {
+    height: auto;
+    padding: 20px 0;
+  }
+}
