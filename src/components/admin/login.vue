@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, toRefs, ref, onMounted, inject } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import { Modal } from "bootstrap";
 const emit = defineEmits(["instance"]);

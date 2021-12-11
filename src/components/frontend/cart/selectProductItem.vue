@@ -55,8 +55,8 @@
 </template>
 
 <script setup>
-import { ref, watch, defineProps, toRefs, inject } from "vue";
-import { storeData, getCartData } from "@/js/storeData.js";
+import { toRefs, inject } from "vue";
+import { getCartData } from "@/js/storeData.js";
 
 // props & emit
 const props = defineProps({

@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, toRefs, ref, onMounted, inject } from "vue";
+import { toRefs, ref, onMounted, inject } from "vue";
 import { Modal } from "bootstrap";
 // props & emit
 const props = defineProps({

@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 const emit = defineEmits(["sidebarSelect"]);
 const whichSidebarBtnActive = ref("全部");
 function changeSidebarBtnActive(category) {
