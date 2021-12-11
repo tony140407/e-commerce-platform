@@ -1,0 +1,69 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background-image: url('@/assets/images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  &_wrapper {
+    @include RWD_md {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+  }
+
+  &_welcome {
+    width: 350px;
+    box-sizing: border-box;
+    margin-top: 60px;
+    padding: 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: 900;
+
+    &_title {
+      font-size: 3rem;
+      border-bottom: 3px solid #fff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    &_btn {
+      @extend %border-radius;
+      font-size: 2rem;
+      padding: 10px;
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      border: 3px solid #fff;
+      color: #fff;
+      &:hover {
+        color: $secondary;
+        background-color: #fff;
+      }
+    }
+  }
+  &_triangle {
+    padding-top: 40px;
+    position: absolute;
+    right: -200px;
+    bottom: -50px;
+    width: 600px;
+    height: 300px;
+    transform: rotate(-45deg);
+
+    background-color: $secondary;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+
+    font-weight: 900;
+    font-size: 3rem;
+    // &:hover {
+    //   color: $secondary;
+    // }
+  }
+}
