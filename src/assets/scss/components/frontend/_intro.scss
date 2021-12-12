@@ -1,0 +1,29 @@
+.intro {
+  &_img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include RWD_lg {
+      min-height: 300px;
+    }
+    &_aboutUs {
+      background-image: url('@/assets/images/aboutUs4.jpg');
+    }
+    &_aboutProducts {
+      background-image: url('@/assets/images/aboutProduct.jpg');
+    }
+  }
+  &_text {
+    padding: 50px 30px;
+    &_title {
+      color: $secondary;
+      border-bottom: 2px solid $secondary;
+      font-weight: 700;
+    }
+    &_content {
+      padding: 50px 50px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+}
