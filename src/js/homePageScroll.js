@@ -22,10 +22,7 @@ let direction = null;
 export function handleScroll(e) {
   direction = detectDirectionScroll(e);
   // 範圍落在 scrollProduct 元件內
-  if (
-    (document.documentElement.scrollTop > top && document.documentElement.scrollTop < bottom) ||
-    (listPosition.rightListScroll.value >= -100 && listPosition.rightListScroll.value <= 0)
-  ) {
+  if (document.documentElement.scrollTop > top && document.documentElement.scrollTop < bottom) {
     // 滾動尚未結束
     if (
       (listPosition.rightListScroll.value <= 0 && direction == "up") ||
