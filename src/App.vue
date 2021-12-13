@@ -7,8 +7,10 @@
 <script setup>
 import Navbar from "./components/layout/navbar.vue";
 import Footer from "./components/layout/footer.vue";
+import { getShopData } from "@/js/storeData.js";
 import { inject, onMounted, ref } from "vue";
 
+getShopData();
 // const VueSweetalert2 = inject("VueSweetalert2");
 // VueSweetalert2({
 //   icon: "error",

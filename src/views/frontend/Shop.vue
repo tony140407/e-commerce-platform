@@ -46,5 +46,4 @@ function changeCardCategory() {
 function changeSelectCategories(value) {
   selectCategories.value = value;
 }
-getShopData();
 </script>

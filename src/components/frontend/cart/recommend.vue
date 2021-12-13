@@ -35,7 +35,4 @@ const breakpoints = {
     spaceBetween: 50,
   },
 };
-if (storeData.products.length == 0) {
-  getShopData();
-}
 </script>
