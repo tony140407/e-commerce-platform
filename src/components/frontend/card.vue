@@ -87,6 +87,7 @@
 <script setup>
 import { toRefs, inject, ref, computed } from "vue";
 import { getCartData } from "@/js/storeData.js";
+import { apiAddCart } from "@/js/api.js";
 const props = defineProps({
   productDetail: Object,
 });
@@ -101,10 +102,9 @@ const card_likeIcon_isActive = ref(false);
 const axios = inject("axios");
 const VueSweetalert2 = inject("VueSweetalert2");
 function addCart() {
-  const totalUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart`;
   const postData = { data: { product_id: currentProductID.value, qty: 1 } };
 
-  axios.post(totalUrl, postData).then((res) => {
+  apiAddCart(postData).then((res) => {
     if (res.data.success == true) {
       VueSweetalert2({
         icon: "success",

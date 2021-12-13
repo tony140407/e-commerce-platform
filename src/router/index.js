@@ -9,7 +9,6 @@ import OrderForm from "../components/frontend/cart/orderForm.vue";
 import Success from "../components/frontend/cart/success.vue";
 
 import SeeMoreProduct from "../views/frontend/SeeMoreProduct.vue";
-import Login from "../views/admin/Login.vue";
 import Dashboard from "../views/admin/Dashboard.vue";
 import Products from "../views/admin/Products.vue";
 import Orders from "../views/admin/Orders.vue";
@@ -47,11 +46,7 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
+
   {
     path: "/admin",
     name: "Dashboard",

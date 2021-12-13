@@ -18,8 +18,9 @@
 </template>
 
 <script setup>
-import { toRefs, ref, onMounted, inject } from "vue";
+import { toRefs, ref, onMounted } from "vue";
 import { Modal } from "bootstrap";
+import { apiDeleteAdminProduct, apiDeletAdmineOrder } from "@/js/api.js";
 // props & emit
 const props = defineProps({
   mode: String,
@@ -40,21 +41,26 @@ const hideModal = () => {
   deleteModal.value.hide();
 };
 // --------------------------------------------------
-
 // 刪除api
-const axios = inject("axios");
 
 const deleteFn = () => {
   hideModal();
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/${mode.value}/${id.value}`;
-  axios
-    .delete(api)
-    .then((res) => {
-      console.log(res);
-      getData.value();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (mode.value == "product") {
+    apiDeleteAdminProduct(id.value)
+      .then((res) => {
+        getData.value();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else if (mode.value == "order") {
+    apiDeletAdmineOrder(id.value)
+      .then((res) => {
+        getData.value();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 };
 </script>

@@ -1,7 +1,12 @@
 <template>
   <section class="recommend">
     <h3 class="recommend_title"><font-awesome-icon :icon="['fas', 'medal']" /> 為您推薦</h3>
-    <swiper :breakpoints="breakpoints" navigation class="recommend_swiper">
+    <swiper
+      v-if="storeData.products.length > 0"
+      :breakpoints="breakpoints"
+      navigation
+      class="recommend_swiper"
+    >
       <swiper-slide v-for="eachProduct in storeData.products" :key="eachProduct">
         <Card :productDetail="eachProduct" />
       </swiper-slide>

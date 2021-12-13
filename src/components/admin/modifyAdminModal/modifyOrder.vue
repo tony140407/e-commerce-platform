@@ -70,8 +70,9 @@
 </template>
 
 <script setup>
-import { toRefs, ref, onMounted, inject, watch } from "vue";
+import { toRefs, ref, onMounted, watch } from "vue";
 import { Modal } from "bootstrap";
+import { apiUpdateAdminOrder } from "@/js/api.js";
 // props & emit
 const props = defineProps({
   orders: Object,
@@ -106,8 +107,6 @@ const hideModal = () => {
 // --------------------------------------------------
 
 // 更新訂單 API
-const axios = inject("axios");
-
 const modifyOrderFn = () => {
   let api;
   const sendData = {
@@ -115,11 +114,8 @@ const modifyOrderFn = () => {
       ...modifyTemplate.value,
     },
   };
-  api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/order/${id.value}`;
-  axios
-    .put(api, sendData)
+  apiUpdateAdminOrder(id.value, sendData)
     .then((res) => {
-      console.log(res);
       getData.value();
     })
     .catch((error) => {

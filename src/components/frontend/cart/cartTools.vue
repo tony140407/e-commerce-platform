@@ -32,9 +32,9 @@
 <script setup>
 import { ref, inject, watch } from "vue";
 import { storeData } from "@/js/storeData.js";
+import { apiCheckout } from "@/js/api.js";
 import { useRouter, useRoute } from "vue-router";
 const VueSweetalert2 = inject("VueSweetalert2");
-const axios = inject("axios");
 
 const router = useRouter();
 const route = useRoute();
@@ -64,8 +64,7 @@ function onSubmit() {
     return;
   }
   // 防止使用著資料不完全
-  const totalUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/order`;
-  axios.post(totalUrl, storeData.orderData).then((res) => {
+  apiCheckout(storeData.orderData).then((res) => {
     router.push({
       name: "Success",
     });

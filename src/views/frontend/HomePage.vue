@@ -16,7 +16,7 @@ import Banner from "@/components/frontend/homepage/banner.vue";
 import Intro from "@/components/frontend/homepage/intro.vue";
 import ScrollProduct from "@/components/frontend/homepage/scrollProduct.vue";
 import { getScrollProductPosition, setListPosition, handleScroll } from "@/js/homePageScroll.js";
-import { ref, onUnmounted } from "vue";
+import { onUnmounted } from "vue";
 
 // 搭配 RWD 不讓 scrollProduct 元件再過小的畫面生效
 if (screen.width > 992) {
@@ -27,9 +27,3 @@ if (screen.width > 992) {
   });
 }
 </script>
-<style lang="scss" scoped>
-// .stop-scrolling {
-//   height: 100%;
-//   overflow: hidden;
-// }
-</style>

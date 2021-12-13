@@ -43,6 +43,7 @@ function changeCardCategory() {
     (product) => product.category === selectCategories.value
   );
 }
+changeCardCategory();
 function changeSelectCategories(value) {
   selectCategories.value = value;
 }

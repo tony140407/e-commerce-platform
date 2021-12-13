@@ -57,27 +57,24 @@
 <script setup>
 import { toRefs, inject } from "vue";
 import { getCartData } from "@/js/storeData.js";
+import { apiUpdateCart, apiDeleteCart } from "@/js/api.js";
 
 // props & emit
 const props = defineProps({
   productDetail: Object,
 });
 const { productDetail } = toRefs(props);
-console.log(productDetail.value);
 
-// 變更購物車
-const axios = inject("axios");
 const VueSweetalert2 = inject("VueSweetalert2");
 
 function changeQty(num) {
   productDetail.value.qty = num;
   // axios
   axiosPutCartQty(num);
+
   function axiosPutCartQty(qty) {
     const data = { data: { product_id: productDetail.value.product_id, qty: qty } };
-    const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart/${productDetail.value.id}`;
-    axios
-      .put(api, data)
+    apiUpdateCart(productDetail.value.id, data)
       .then((res) => {
         if (res.data.success == true) {
           VueSweetalert2({
@@ -97,9 +94,7 @@ function changeQty(num) {
 }
 
 function deleteSingleProduct() {
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart/${productDetail.value.id}`;
-  axios
-    .delete(api)
+  apiDeleteCart(productDetail.value.id)
     .then((res) => {
       if (res.data.success == true) {
         // storeData.carts

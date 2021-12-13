@@ -48,6 +48,7 @@
 import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import { Modal } from "bootstrap";
+import { apiUserLogin } from "@/js/api.js";
 const emit = defineEmits(["instance"]);
 
 // bootstrap modal 建立並emit到父原件以供顯現( show() )
@@ -76,8 +77,7 @@ const login = () => {
   };
   const loginAPI = `${process.env.VUE_APP_baseUrl}/admin/signin`;
 
-  axios
-    .post(loginAPI, user)
+  apiUserLogin(user)
     .then((res) => {
       if (res.data.success) {
         const { token, expired } = res.data;

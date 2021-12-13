@@ -174,6 +174,7 @@
 <script setup>
 import { toRefs, ref, onMounted, inject, watch } from "vue";
 import { Modal } from "bootstrap";
+import { apiUpdateAdminProducts } from "@/js/api.js";
 // props & emit
 const props = defineProps({
   template: Object,
@@ -206,8 +207,6 @@ const hideModal = () => {
 // --------------------------------------------------
 
 // 更新產品 / 新稱產品 API
-const axios = inject("axios");
-
 const modifyProductFn = () => {
   let api;
   const sendData = {
@@ -218,8 +217,7 @@ const modifyProductFn = () => {
   if (id.value == "") {
     // 新增產品
     api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/product`;
-    axios
-      .post(api, sendData)
+    apiUpdateAdminProducts("post", "", sendData)
       .then((res) => {
         console.log(res);
         getData.value();
@@ -230,8 +228,7 @@ const modifyProductFn = () => {
   } else {
     // 修改產品
     api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/product/${id.value}`;
-    axios
-      .put(api, sendData)
+    apiUpdateAdminProducts("put", id.value, sendData)
       .then((res) => {
         console.log(res);
         getData.value();

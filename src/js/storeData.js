@@ -1,5 +1,6 @@
 import { reactive } from "vue";
 import axios from "axios";
+import { apiGetAllProducts, apiGetCart } from "./api.js";
 
 export const storeData = reactive({
   originProducts: [],
@@ -21,9 +22,7 @@ export const storeData = reactive({
 });
 
 export function getCartData() {
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart`;
-  axios
-    .get(api)
+  apiGetCart()
     .then((res) => {
       storeData.carts = res.data.data.carts;
       storeData.final_total = res.data.data.final_total;
@@ -34,9 +33,7 @@ export function getCartData() {
 }
 
 export function getShopData() {
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/products/all`;
-  axios
-    .get(api)
+  apiGetAllProducts()
     .then((res) => {
       storeData.originProducts = res.data.products;
       storeData.products = JSON.parse(JSON.stringify(res.data.products));

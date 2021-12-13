@@ -35,47 +35,42 @@
         </div>
       </div>
     </div>
+
+    <Recommend class="w-100" />
   </section>
 </template>
 
 <script setup>
-import { ref, inject } from "vue";
-import { storeData } from "@/js/storeData.js";
+import { ref, watch } from "vue";
+import { storeData, getShopData } from "@/js/storeData.js";
+import Recommend from "@/components/frontend/cart/recommend.vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-// api 取得資料
-const axios = inject("axios");
 
 const specialProduct = ref({ id: null });
+
+function findProduct() {
+  storeData.originProducts.find((element) => {
+    if (element.id == route.params.id) {
+      specialProduct.value = element;
+      return;
+    }
+  });
+}
 function init() {
-  console.log(storeData.originProducts);
   if (storeData.originProducts.length !== 0) {
-    storeData.originProducts.find((element) => {
-      if (element.id == route.params.id) {
-        specialProduct.value = element;
-        return;
-      }
-    });
+    findProduct();
   } else {
-    console.log("axios");
-    getData();
-  }
-  function getData() {
-    const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/product/${route.params.id}`;
-    axios
-      .get(api)
-      .then((res) => {
-        specialProduct.value = res.data.product;
-        console.log(specialProduct.value);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getShopData();
+    watch(
+      () => storeData.originProducts,
+      () => {
+        findProduct();
+      }
+    );
   }
 }
+
 init();
-const testImg = ref(
-  "https://images.unsplash.com/photo-1481277542470-605612bd2d61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1406&q=80"
-);
 </script>

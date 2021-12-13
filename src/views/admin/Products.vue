@@ -46,7 +46,7 @@ import Pagination from "@/components/admin/pagination.vue";
 import ModifyProduct from "@/components/admin/modifyAdminModal/modifyProduct.vue";
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
 import { ref, inject } from "vue";
-import Pagination1 from "../../components/admin/pagination.vue";
+import { apiGetAdminProducts } from "@/js/api.js";
 
 // modifyProduct / addProduct
 const template = ref({
@@ -84,10 +84,9 @@ const products = ref(null);
 const pagination = ref(null);
 const pageNum = ref(1);
 
+// 取得資料
 function getData() {
-  const productsUrl = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/products?page=${pageNum.value}`;
-  axios
-    .get(productsUrl)
+  apiGetAdminProducts(pageNum.value)
     .then((res) => {
       console.log(res.data);
       if (res.data.success) {
@@ -101,7 +100,6 @@ function getData() {
 }
 
 getData();
-// 取得資料
 
 // 取得 Modal 實體
 const modalInstance = ref({});

@@ -45,6 +45,7 @@
 import Pagination from "@/components/admin/pagination.vue";
 import ModifyOrder from "@/components/admin/modifyAdminModal/modifyOrder.vue";
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
+import { apiGetAdminOrders } from "@/js/api.js";
 import { ref, inject } from "vue";
 
 const is_paid = ref(false);
@@ -78,12 +79,10 @@ const pagination = ref(null);
 const pageNum = ref(1);
 
 function getData() {
-  const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/orders?page=${pageNum.value}`;
-  axios.get(api).then((res) => {
+  apiGetAdminOrders(pageNum.value).then((res) => {
     if (res.data.success === true) {
       orders.value = res.data.orders;
       pagination.value = res.data.pagination;
-      console.log(res.data);
     }
   });
 }
