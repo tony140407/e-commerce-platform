@@ -1,5 +1,5 @@
 <template>
-  <section class="scrollProduct container-fluid" ref="scrollProductRef">
+  <section class="scrollProduct container" ref="scrollProductRef">
     <div class="row justify-content-between g-0 d-none d-lg-flex">
       <div
         class="scrollProduct_cardList col-12 col-lg-5"

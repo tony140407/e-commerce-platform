@@ -1,7 +1,7 @@
 <template>
   <section class="seeMoreProduct container py-5">
-    <div v-if="specialProduct.id" class="row" data-aos="fade-up">
-      <div class="col-12 col-md-8">
+    <div v-if="specialProduct.id" class="row mb-3" data-aos="fade-up">
+      <div class="col-12 col-md-8 mb-3 mb-md-0">
         <img class="img-fluid" :src="specialProduct.imageUrl" alt="" />
       </div>
       <div class="col-12 col-md-4 d-lg-flex flex-column justify-content-between">

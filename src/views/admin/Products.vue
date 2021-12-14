@@ -28,7 +28,7 @@
         </div>
       </li>
     </ul>
-    <Pagination :pagination="pagination" />
+    <Pagination :pagination="pagination" @change-page="changePageNum" />
   </section>
 
   <!-- Modal -->
@@ -45,7 +45,7 @@
 import Pagination from "@/components/admin/pagination.vue";
 import ModifyProduct from "@/components/admin/modifyAdminModal/modifyProduct.vue";
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
-import { ref, inject } from "vue";
+import { ref, inject, watch } from "vue";
 import { apiGetAdminProducts } from "@/js/api.js";
 import { changeLoading } from "@/js/storeData.js";
 // modifyProduct / addProduct
@@ -83,7 +83,15 @@ const axios = inject("axios");
 const products = ref(null);
 const pagination = ref(null);
 const pageNum = ref(1);
-
+function changePageNum(num) {
+  pageNum.value = num;
+}
+watch(
+  () => pageNum.value,
+  () => {
+    getData();
+  }
+);
 // 取得資料
 function getData() {
   changeLoading(true);

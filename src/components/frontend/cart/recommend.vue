@@ -7,7 +7,7 @@
       navigation
       class="recommend_swiper"
     >
-      <swiper-slide v-for="eachProduct in storeData.products" :key="eachProduct">
+      <swiper-slide v-for="eachProduct in storeData.products.slice(0, 8)" :key="eachProduct">
         <Card :productDetail="eachProduct" />
       </swiper-slide>
     </swiper>

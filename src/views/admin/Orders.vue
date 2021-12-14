@@ -34,7 +34,7 @@
         </div>
       </li>
     </ul>
-    <Pagination :pagination="pagination" />
+    <Pagination :pagination="pagination" @change-page="changePageNum" />
   </section>
 
   <!-- Modal -->
@@ -47,7 +47,7 @@ import ModifyOrder from "@/components/admin/modifyAdminModal/modifyOrder.vue";
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
 import { apiGetAdminOrders } from "@/js/api.js";
 import { changeLoading } from "@/js/storeData.js";
-import { ref, inject } from "vue";
+import { ref, inject, watch } from "vue";
 
 const is_paid = ref(false);
 // 取得 Modal 實體
@@ -78,7 +78,15 @@ function showDeleteModal(id) {
 const orders = ref(null);
 const pagination = ref(null);
 const pageNum = ref(1);
-
+function changePageNum(num) {
+  pageNum.value = num;
+}
+watch(
+  () => pageNum.value,
+  () => {
+    getData();
+  }
+);
 function getData() {
   changeLoading(true);
   apiGetAdminOrders(pageNum.value).then((res) => {
