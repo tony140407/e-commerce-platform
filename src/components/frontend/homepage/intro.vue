@@ -1,7 +1,7 @@
 <template>
   <section class="intro">
     <div class="container my-5">
-      <div class="row">
+      <div class="row" data-aos="fade-up">
         <div class="col-12 col-md-6 intro_img intro_img_aboutUs"></div>
         <div class="col-12 col-md-6 intro_text">
           <h3 class="intro_text_title">關於 Wardrobe</h3>
@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" data-aos="fade-up">
         <div class="col-12 col-md-6 order-md-2 intro_img intro_img_aboutProducts"></div>
         <div class="col-12 col-md-6 order-md-1 intro_text">
           <h3 class="intro_text_title">關於包裹</h3>

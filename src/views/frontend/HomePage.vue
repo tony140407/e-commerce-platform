@@ -1,6 +1,4 @@
 <template>
-  <!-- homePage
-  <font-awesome-icon :icon="['far', 'heart']" /> -->
   <section>
     <Banner />
     <Intro />

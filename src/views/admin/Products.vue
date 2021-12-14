@@ -47,7 +47,7 @@ import ModifyProduct from "@/components/admin/modifyAdminModal/modifyProduct.vue
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
 import { ref, inject } from "vue";
 import { apiGetAdminProducts } from "@/js/api.js";
-
+import { changeLoading } from "@/js/storeData.js";
 // modifyProduct / addProduct
 const template = ref({
   category: "",
@@ -86,15 +86,17 @@ const pageNum = ref(1);
 
 // 取得資料
 function getData() {
+  changeLoading(true);
   apiGetAdminProducts(pageNum.value)
     .then((res) => {
-      console.log(res.data);
+      changeLoading(false);
       if (res.data.success) {
         pagination.value = res.data.pagination;
         products.value = res.data.products;
       }
     })
     .catch((err) => {
+      changeLoading(false);
       alert(err);
     });
 }

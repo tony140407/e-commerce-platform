@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import { apiGetAllProducts, apiGetCart } from "./api.js";
 
@@ -20,27 +20,34 @@ export const storeData = reactive({
     },
   },
 });
+export const isLoading = ref(false);
 
 export function getCartData() {
+  changeLoading(true);
   apiGetCart()
     .then((res) => {
       storeData.carts = res.data.data.carts;
       storeData.final_total = res.data.data.final_total;
+      changeLoading(false);
     })
     .catch((error) => {
       console.log(error);
+      changeLoading(false);
     });
 }
 
 export function getShopData() {
+  changeLoading(true);
   apiGetAllProducts()
     .then((res) => {
       storeData.originProducts = res.data.products;
       storeData.products = JSON.parse(JSON.stringify(res.data.products));
       filterProducts();
+      changeLoading(false);
     })
     .catch((error) => {
       console.log(error);
+      changeLoading(false);
     });
 
   function filterProducts() {
@@ -96,4 +103,8 @@ export function getShopData() {
     });
     storeData.products = newProducts;
   }
+}
+
+export function changeLoading(status) {
+  isLoading.value = status;
 }

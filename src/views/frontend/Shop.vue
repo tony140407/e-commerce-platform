@@ -3,7 +3,7 @@
     <div class="row gx-5">
       <Sidebar class="col-12 col-lg-3" @sidebarSelect="changeSelectCategories" />
       <div class="col-12 col-lg-9">
-        <div class="row gy-3">
+        <div class="row gy-3" data-aos="fade-up">
           <div class="col-12 col-lg-6" v-for="eachProduct in filterProducts" :key="eachProduct">
             <Card :productDetail="eachProduct" />
           </div>

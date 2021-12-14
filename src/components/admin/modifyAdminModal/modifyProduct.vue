@@ -16,22 +16,26 @@
                     id="imageUrl"
                     class="form-control"
                     placeholder="請輸入圖片連結"
+                    v-model="inputNewImg"
                   />
                 </div>
 
-                <div class="input-group mb-3">
-                  <input type="file" class="form-control" />
-                </div>
                 <figure>
                   <img class="img-fluid img-zoom" :src="modifyTemplate.imageUrl" alt="" />
                 </figure>
               </div>
               <div class="mb-3">
-                <button class="btn modifyProduct_addImgBtn btn-sm d-block w-100 mb-1" @click="">
+                <button
+                  class="btn modifyProduct_addImgBtn btn-sm d-block w-100 mb-1"
+                  @click="addNewImg"
+                >
                   新增圖片
                 </button>
 
-                <button class="btn modifyProduct_deleteImgBtn btn-sm d-block w-100 mb-1" @click="">
+                <button
+                  class="btn modifyProduct_deleteImgBtn btn-sm d-block w-100 mb-1"
+                  @click="deleteImg"
+                >
                   刪除圖片
                 </button>
               </div>
@@ -175,6 +179,7 @@
 import { toRefs, ref, onMounted, inject, watch } from "vue";
 import { Modal } from "bootstrap";
 import { apiUpdateAdminProducts } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData.js";
 // props & emit
 const props = defineProps({
   template: Object,
@@ -205,10 +210,38 @@ const hideModal = () => {
   modifyProductModal.value.hide();
 };
 // --------------------------------------------------
+const inputNewImg = ref(null);
+function addNewImg() {
+  if (!modifyTemplate.value) {
+    modifyTemplate.value.imageUrl = inputNewImg.value;
+    inputNewImg.value = "";
+    return;
+  }
+  if (!modifyTemplate.value.imagesUrl) {
+    modifyTemplate.value.imagesUrl = [];
+  }
+  modifyTemplate.value.imagesUrl = modifyTemplate.value.imagesUrl.concat(
+    modifyTemplate.value.imageUrl
+  );
+  modifyTemplate.value.imageUrl = inputNewImg.value;
+  inputNewImg.value = "";
+}
+function deleteImg() {
+  if (modifyTemplate.value.imageUrl === "") return;
+  if (modifyTemplate.value.imagesUrl) {
+    const newImgArr = modifyTemplate.value.imagesUrl.splice(0, 1);
+    const newImg = newImgArr[0];
+    modifyTemplate.value.imageUrl = newImg;
+    inputNewImg.value = newImg; // 不知為何也需要修改 inputNewImg
+  } else {
+    modifyTemplate.value.imageUrl = "";
+  }
+}
 
+// --------------------------------------------------
 // 更新產品 / 新稱產品 API
 const modifyProductFn = () => {
-  let api;
+  changeLoading(true);
   const sendData = {
     data: {
       ...modifyTemplate.value,
@@ -216,24 +249,24 @@ const modifyProductFn = () => {
   };
   if (id.value == "") {
     // 新增產品
-    api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/product`;
     apiUpdateAdminProducts("post", "", sendData)
       .then((res) => {
-        console.log(res);
+        changeLoading(false);
         getData.value();
       })
       .catch((error) => {
+        changeLoading(false);
         console.log(error);
       });
   } else {
     // 修改產品
-    api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/admin/product/${id.value}`;
     apiUpdateAdminProducts("put", id.value, sendData)
       .then((res) => {
-        console.log(res);
+        changeLoading(false);
         getData.value();
       })
       .catch((error) => {
+        changeLoading(false);
         console.log(error);
       });
   }

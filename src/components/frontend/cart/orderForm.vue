@@ -5,7 +5,7 @@
       <p class="Cart_note">請確實輸入詳盡資料!</p>
     </div>
 
-    <div class="orderForm d-block d-lg-flex mb-5">
+    <div class="orderForm d-block d-lg-flex mb-5" data-aos="flip-up">
       <div
         class="
           orderForm_personalCard

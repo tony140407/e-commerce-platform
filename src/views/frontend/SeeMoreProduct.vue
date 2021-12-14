@@ -1,6 +1,6 @@
 <template>
   <section class="seeMoreProduct container py-5">
-    <div v-if="specialProduct.id" class="row">
+    <div v-if="specialProduct.id" class="row" data-aos="fade-up">
       <div class="col-12 col-md-8">
         <img class="img-fluid" :src="specialProduct.imageUrl" alt="" />
       </div>
@@ -12,12 +12,14 @@
           </p>
           <p class="seeMoreProduct_price mb-3">NT${{ specialProduct.price }}</p>
           <div class="row g-0 mb-2">
-            <select class="seeMoreProduct_inputNum col-4">
+            <select class="seeMoreProduct_inputNum col-4" v-model="productNum">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            <button class="seeMoreProduct_addCart offset-1 col-7">加入購物車</button>
+            <button class="seeMoreProduct_addCart offset-1 col-7" @click="addCart">
+              加入購物車
+            </button>
           </div>
         </div>
 
@@ -41,14 +43,37 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { storeData, getShopData } from "@/js/storeData.js";
+import { ref, watch, inject } from "vue";
+import { apiAddCart } from "@/js/api.js";
+import { storeData, getShopData, changeLoading } from "@/js/storeData.js";
 import Recommend from "@/components/frontend/cart/recommend.vue";
 import { useRoute } from "vue-router";
-
 const route = useRoute();
+const VueSweetalert2 = inject("VueSweetalert2");
 
 const specialProduct = ref({ id: null });
+const productNum = ref(1);
+function addCart() {
+  changeLoading(true);
+  let data = { data: { product_id: specialProduct.value.id, qty: Number(productNum.value) } };
+  apiAddCart(data)
+    .then((res) => {
+      changeLoading(false);
+      if (res.data.success == true) {
+        VueSweetalert2({
+          icon: "success",
+          title: "已加入購物車!",
+          timer: 1000,
+          showCloseButton: false,
+          showCancelButton: false,
+        });
+      }
+    })
+    .catch((error) => {
+      changeLoading(false);
+      console.log(error);
+    });
+}
 
 function findProduct() {
   storeData.originProducts.find((element) => {
@@ -71,6 +96,5 @@ function init() {
     );
   }
 }
-
 init();
 </script>

@@ -1,7 +1,7 @@
 .scrollProduct {
   position: relative;
   overflow: hidden;
-  height: 100vh;
+  height: 120vh; /* 範圍增加更易觸發 scroll 函式 */
   &_cardList {
     max-width: 600px;
     margin-left: 30px;
@@ -14,10 +14,9 @@
   &_slogan {
     position: absolute;
     right: 0;
-    top: 0;
+    top: -10vh;
     width: 100%;
     height: 100%;
-    // background-color: rgba(255, 255, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;

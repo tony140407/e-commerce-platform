@@ -5,7 +5,7 @@ const path = process.env.VUE_APP_apiPath;
 
 // 後台相關
 // 登入
-export const apiUserLogin = (data) => axios.post(`${api}/admin/signin`, data);
+export let apiUserLogin = (data) => axios.post(`${api}/admin/signin`, data);
 
 // 商品管理
 export const apiGetAdminAllProducts = () => axios.get(`${api}/api/${path}/admin/products/all`);

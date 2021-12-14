@@ -5,7 +5,7 @@
         class="scrollProduct_cardList col-12 col-lg-5"
         :style="{ transform: `translateY(${rightListScroll}vh)` }"
       >
-        <div class="" v-for="eachProduct in storeData.products.slice(0, 6)" :key="eachProduct">
+        <div class="" v-for="eachProduct in storeData.products.slice(0, 8)" :key="eachProduct">
           <Card :productDetail="eachProduct" class="mb-4" />
         </div>
       </div>
@@ -13,14 +13,14 @@
         class="scrollProduct_cardList col-12 col-lg-5"
         :style="{ transform: `translateY(${leftListScroll}vh)` }"
       >
-        <div class="" v-for="eachProduct in storeData.products.slice(-6)" :key="eachProduct">
+        <div class="" v-for="eachProduct in storeData.products.slice(-8)" :key="eachProduct">
           <Card :productDetail="eachProduct" class="mb-4" />
         </div>
       </div>
     </div>
 
     <div class="scrollProduct_slogan">
-      <div class="scrollProduct_slogan_content">超過50種商品等你訂購</div>
+      <div class="scrollProduct_slogan_content" data-aos="fade-down">超過50種商品等你訂購</div>
     </div>
   </section>
 </template>

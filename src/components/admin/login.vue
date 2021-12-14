@@ -49,6 +49,7 @@ import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import { Modal } from "bootstrap";
 import { apiUserLogin } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData.js";
 const emit = defineEmits(["instance"]);
 
 // bootstrap modal 建立並emit到父原件以供顯現( show() )
@@ -70,15 +71,16 @@ const router = useRouter();
 const loginInformation = ref({ username: null, password: null });
 const login = () => {
   hideModal();
+  changeLoading(true);
   const { username, password } = loginInformation.value;
   const user = {
     username,
     password,
   };
-  const loginAPI = `${process.env.VUE_APP_baseUrl}/admin/signin`;
 
   apiUserLogin(user)
     .then((res) => {
+      changeLoading(false);
       if (res.data.success) {
         const { token, expired } = res.data;
         document.cookie = `hexToken=${token}; expires=${new Date(expired)}; path=/`;
@@ -92,6 +94,7 @@ const login = () => {
       }
     })
     .catch((error) => {
+      changeLoading(false);
       console.log(error);
     });
 };

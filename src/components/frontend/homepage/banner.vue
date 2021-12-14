@@ -1,7 +1,7 @@
 <template>
   <section class="banner">
     <div class="banner_wrapper container">
-      <div class="banner_welcome">
+      <div class="banner_welcome" data-aos="fade-up-right">
         <h2 class="banner_welcome_title">
           Welcome to <br />
           Wardrobe!

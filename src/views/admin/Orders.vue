@@ -46,6 +46,7 @@ import Pagination from "@/components/admin/pagination.vue";
 import ModifyOrder from "@/components/admin/modifyAdminModal/modifyOrder.vue";
 import Delete from "@/components/admin/modifyAdminModal/delete.vue";
 import { apiGetAdminOrders } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData.js";
 import { ref, inject } from "vue";
 
 const is_paid = ref(false);
@@ -73,13 +74,15 @@ function showDeleteModal(id) {
 // Modal 方法
 
 // 取得訂單資料
-const axios = inject("axios");
+// const axios = inject("axios");
 const orders = ref(null);
 const pagination = ref(null);
 const pageNum = ref(1);
 
 function getData() {
+  changeLoading(true);
   apiGetAdminOrders(pageNum.value).then((res) => {
+    changeLoading(false);
     if (res.data.success === true) {
       orders.value = res.data.orders;
       pagination.value = res.data.pagination;

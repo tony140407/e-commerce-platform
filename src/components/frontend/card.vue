@@ -88,6 +88,7 @@
 import { toRefs, inject, ref, computed } from "vue";
 import { getCartData } from "@/js/storeData.js";
 import { apiAddCart } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData";
 const props = defineProps({
   productDetail: Object,
 });
@@ -99,12 +100,14 @@ const currentProductID = computed(() => productDetail.value.size[card_detail_siz
 const card_likeIcon_isActive = ref(false);
 
 // 加入購物車
-const axios = inject("axios");
+
 const VueSweetalert2 = inject("VueSweetalert2");
 function addCart() {
+  changeLoading(true);
   const postData = { data: { product_id: currentProductID.value, qty: 1 } };
 
   apiAddCart(postData).then((res) => {
+    changeLoading(false);
     if (res.data.success == true) {
       VueSweetalert2({
         icon: "success",

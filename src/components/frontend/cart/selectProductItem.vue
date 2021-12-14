@@ -56,7 +56,7 @@
 
 <script setup>
 import { toRefs, inject } from "vue";
-import { getCartData } from "@/js/storeData.js";
+import { getCartData, changeLoading } from "@/js/storeData.js";
 import { apiUpdateCart, apiDeleteCart } from "@/js/api.js";
 
 // props & emit
@@ -73,9 +73,11 @@ function changeQty(num) {
   axiosPutCartQty(num);
 
   function axiosPutCartQty(qty) {
+    changeLoading(true);
     const data = { data: { product_id: productDetail.value.product_id, qty: qty } };
     apiUpdateCart(productDetail.value.id, data)
       .then((res) => {
+        changeLoading(false);
         if (res.data.success == true) {
           VueSweetalert2({
             icon: "success",
@@ -88,14 +90,17 @@ function changeQty(num) {
         }
       })
       .catch((error) => {
+        changeLoading(false);
         console.log(error);
       });
   }
 }
 
 function deleteSingleProduct() {
+  changeLoading(true);
   apiDeleteCart(productDetail.value.id)
     .then((res) => {
+      changeLoading(false);
       if (res.data.success == true) {
         // storeData.carts
         VueSweetalert2({
@@ -109,19 +114,8 @@ function deleteSingleProduct() {
       }
     })
     .catch((error) => {
+      changeLoading(false);
       console.log(error);
     });
 }
-
-// function getCartData() {
-//   const api = `${process.env.VUE_APP_baseUrl}/api/${process.env.VUE_APP_apiPath}/cart`;
-//   axios
-//     .get(api)
-//     .then((res) => {
-//       storeData.carts = res.data.data.carts;
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
 </script>

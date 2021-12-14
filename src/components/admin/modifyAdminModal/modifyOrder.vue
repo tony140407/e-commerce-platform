@@ -73,6 +73,7 @@
 import { toRefs, ref, onMounted, watch } from "vue";
 import { Modal } from "bootstrap";
 import { apiUpdateAdminOrder } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData.js";
 // props & emit
 const props = defineProps({
   orders: Object,
@@ -108,7 +109,7 @@ const hideModal = () => {
 
 // 更新訂單 API
 const modifyOrderFn = () => {
-  let api;
+  changeLoading(true);
   const sendData = {
     data: {
       ...modifyTemplate.value,
@@ -116,16 +117,17 @@ const modifyOrderFn = () => {
   };
   apiUpdateAdminOrder(id.value, sendData)
     .then((res) => {
+      changeLoading(false);
       getData.value();
     })
     .catch((error) => {
       console.log(error);
+      changeLoading(false);
     });
 };
 
 // 改變價格
 function changeTotal() {
-  console.log("changeTotal");
   let totalSum = 0;
   const productsID = Object.keys(modifyTemplate.value.products);
   productsID.forEach((eachID) => {

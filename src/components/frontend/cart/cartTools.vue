@@ -23,7 +23,7 @@
         <router-link :to="'/cart'" class="col-4 h4 cartTools_continueShoppingBTN"
           >購物車</router-link
         >
-        <a class="offset-1 col-7 h4 cartTools_nextBTN" @click="onSubmit">結帳!</a>
+        <button class="offset-1 col-7 h4 cartTools_nextBTN" @click="onSubmit">結帳!</button>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, inject, watch } from "vue";
-import { storeData } from "@/js/storeData.js";
+import { storeData, changeLoading } from "@/js/storeData.js";
 import { apiCheckout } from "@/js/api.js";
 import { useRouter, useRoute } from "vue-router";
 const VueSweetalert2 = inject("VueSweetalert2");
@@ -51,9 +51,11 @@ watch(
 
 // 送出訂單
 function onSubmit() {
+  changeLoading(true);
   // 防止使用著資料不完全
   const { name, email, tel, address } = storeData.orderData.data.user;
   if (name == "" || email == "" || tel == "" || address == "") {
+    changeLoading(false);
     VueSweetalert2({
       icon: "error",
       title: "請填妥個人資訊",
@@ -65,6 +67,7 @@ function onSubmit() {
   }
   // 防止使用著資料不完全
   apiCheckout(storeData.orderData).then((res) => {
+    changeLoading(false);
     router.push({
       name: "Success",
     });

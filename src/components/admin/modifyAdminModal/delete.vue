@@ -21,6 +21,7 @@
 import { toRefs, ref, onMounted } from "vue";
 import { Modal } from "bootstrap";
 import { apiDeleteAdminProduct, apiDeletAdmineOrder } from "@/js/api.js";
+import { changeLoading } from "@/js/storeData.js";
 // props & emit
 const props = defineProps({
   mode: String,
@@ -45,20 +46,25 @@ const hideModal = () => {
 
 const deleteFn = () => {
   hideModal();
+  changeLoading(true);
   if (mode.value == "product") {
     apiDeleteAdminProduct(id.value)
       .then((res) => {
+        changeLoading(false);
         getData.value();
       })
       .catch((error) => {
+        changeLoading(false);
         console.log(error);
       });
   } else if (mode.value == "order") {
     apiDeletAdmineOrder(id.value)
       .then((res) => {
+        changeLoading(false);
         getData.value();
       })
       .catch((error) => {
+        changeLoading(false);
         console.log(error);
       });
   }
