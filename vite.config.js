@@ -20,4 +20,7 @@ export default defineConfig({
       "~": path.resolve(__dirname, "./node_modules"),
     },
   },
+  // 部屬位置
+  publicPath: "/e-commerce-platform/",
+  base: "/e-commerce-platform/",
 });
