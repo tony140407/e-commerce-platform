@@ -4,7 +4,7 @@
   height: 100vh;
   background: linear-gradient(90deg, #fff 50%, transparent 50%) center center/
       100% 100%,
-    url('@/assets/images/successSend.jpg') right center / auto 100%;
+   no-repeat url('@/assets/images/successSend.jpg') right center / auto 100%;
 
   @include RWD_lg {
     background: url('@/assets/images/successSend.jpg') right center / auto 100%;

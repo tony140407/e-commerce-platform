@@ -45,9 +45,7 @@
       transform: scale(1.2, 1.2);
     }
   }
-  // &:hover > &_product_img {
-  //   transform: scale(1.2, 1.2);
-  // }
+
   &_product_img_seeMore {
     @include outlineBTN-hover($secondary);
     display: none;
@@ -107,9 +105,6 @@
           @include border-style(-3px);
         }
       }
-      // &_item--active {
-      //   @include border-style(-3px);
-      // }
     }
   }
   &_addCartBtn {
@@ -169,8 +164,5 @@
 
     color: #fff;
     z-index: 2;
-    // &:hover {
-    //   color: $secondary;
-    // }
   }
 }
